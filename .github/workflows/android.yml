@@ -26,7 +26,8 @@ jobs:
         keytool -genkey -v -keystore app/debug.keystore -storepass ${{ secrets.KEYSTORE_PASSWORD }} -alias androiddebugkey -keypass ${{ secrets.KEYSTORE_PASSWORD }} -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US" -ext "SAN=dns:localhost,ip:127.0.0.1"
     - name: Fix line endings for gradlew
       run: |
-        dos2unix gradlew
+        sed -i's/\r$//' gradlew
+        chmod +x gradlew
     - name: Generate signed debug APK
       run: |
         ./gradlew :app:assembleDebug

@@ -1,5 +1,5 @@
-@file:Suppress("UNCHECKED_CAST", "USELESS_CAST", "INAPPLICABLE_JVM_NAME")
-package uni.UNI79D8002;
+@file:Suppress("UNCHECKED_CAST", "USELESS_CAST", "INAPPLICABLE_JVM_NAME", "UNUSED_ANONYMOUS_PARAMETER")
+package uni.UNI4CAF968;
 import io.dcloud.uniapp.*;
 import io.dcloud.uniapp.extapi.*;
 import io.dcloud.uniapp.framework.*;
@@ -14,26 +14,31 @@ import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Deferred;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.async;
-import io.dcloud.uniapp.appframe.AppConfig;
 import io.dcloud.uniapp.extapi.exit as uni_exit;
 import io.dcloud.uniapp.extapi.showToast as uni_showToast;
+val runBlock1 = run {
+    __uniConfig.getAppStyles = fun(): Map<String, Map<String, Map<String, Any>>> {
+        return GenApp.styles;
+    }
+    ;
+}
 var firstBackTime: Number = 0;
 open class GenApp : BaseApp {
-    constructor(instance: ComponentInternalInstance) : super(instance) {
+    constructor(__ins: ComponentInternalInstance) : super(__ins) {
         onLaunch(fun(_: OnLaunchOptions) {
-            console.log("App Launch", " at App.uvue:5");
+            console.log("App Launch");
         }
-        , instance);
+        , __ins);
         onAppShow(fun(_: OnShowOptions) {
-            console.log("App Show", " at App.uvue:8");
+            console.log("App Show");
         }
-        , instance);
-        onHide(fun() {
-            console.log("App Hide", " at App.uvue:11");
+        , __ins);
+        onAppHide(fun() {
+            console.log("App Hide");
         }
-        , instance);
+        , __ins);
         onLastPageBackPress(fun() {
-            console.log("App LastPageBackPress", " at App.uvue:15");
+            console.log("App LastPageBackPress");
             if (firstBackTime == 0) {
                 uni_showToast(ShowToastOptions(title = "再按一次退出应用", position = "bottom"));
                 firstBackTime = Date.now();
@@ -45,11 +50,11 @@ open class GenApp : BaseApp {
                 uni_exit(null);
             }
         }
-        , instance);
+        , __ins);
         onExit(fun() {
-            console.log("App Exit", " at App.uvue:32");
+            console.log("App Exit");
         }
-        , instance);
+        , __ins);
     }
     companion object {
         val styles: Map<String, Map<String, Map<String, Any>>>
@@ -81,38 +86,65 @@ val GenPagesIndexIndexClass = CreateVueComponent(GenPagesIndexIndex::class.java,
     return GenPagesIndexIndex(instance);
 }
 );
+val GenPagesIndex2Index2Class = CreateVueComponent(GenPagesIndex2Index2::class.java, fun(): VueComponentOptions {
+    return VueComponentOptions(type = "page", name = "", inheritAttrs = GenPagesIndex2Index2.inheritAttrs, inject = GenPagesIndex2Index2.inject, props = GenPagesIndex2Index2.props, propsNeedCastKeys = GenPagesIndex2Index2.propsNeedCastKeys, emits = GenPagesIndex2Index2.emits, components = GenPagesIndex2Index2.components, styles = GenPagesIndex2Index2.styles, setup = fun(props: ComponentPublicInstance): Any? {
+        return GenPagesIndex2Index2.setup(props as GenPagesIndex2Index2);
+    }
+    );
+}
+, fun(instance): GenPagesIndex2Index2 {
+    return GenPagesIndex2Index2(instance);
+}
+);
 fun createApp(): UTSJSONObject {
     val app = createSSRApp(GenAppClass);
-    return object : UTSJSONObject() {
-        var app = app
-    };
+    return UTSJSONObject(Map<String, Any?>(utsArrayOf(
+        utsArrayOf(
+            "app",
+            app
+        )
+    )));
 }
 fun main(app: IApp) {
     definePageRoutes();
     defineAppConfig();
-    (createApp()["app"] as VueApp).mount(app);
+    (createApp()["app"] as VueApp).mount(app, GenUniApp());
 }
-open class UniAppConfig : AppConfig {
-    override var name: String = "debug-kux-audio-player";
-    override var appid: String = "__UNI__79D8002";
+open class UniAppConfig : io.dcloud.uniapp.appframe.AppConfig {
+    override var name: String = "kux-pip";
+    override var appid: String = "__UNI__4CAF968";
     override var versionName: String = "1.0.0";
     override var versionCode: String = "100";
-    override var uniCompilerVersion: String = "4.24";
-    constructor(){}
+    override var uniCompilerVersion: String = "4.36";
+    constructor() : super() {}
 }
 fun definePageRoutes() {
-    __uniRoutes.push(PageRoute(path = "pages/index/index", component = GenPagesIndexIndexClass, meta = PageMeta(isQuit = true), style = utsMapOf("navigationBarTitleText" to "uni-app x")));
+    __uniRoutes.push(UniPageRoute(path = "pages/index/index", component = GenPagesIndexIndexClass, meta = UniPageMeta(isQuit = true), style = utsMapOf("navigationBarTitleText" to "uni-app x")));
+    __uniRoutes.push(UniPageRoute(path = "pages/index2/index2", component = GenPagesIndex2Index2Class, meta = UniPageMeta(isQuit = false), style = utsMapOf("navigationBarTitleText" to "", "enablePullDownRefresh" to false, "navigationStyle" to "custom")));
 }
-val __uniTabBar: Map<String, Any?>? = null;
 val __uniLaunchPage: Map<String, Any?> = utsMapOf("url" to "pages/index/index", "style" to utsMapOf("navigationBarTitleText" to "uni-app x"));
 fun defineAppConfig() {
     __uniConfig.entryPagePath = "/pages/index/index";
     __uniConfig.globalStyle = utsMapOf("navigationBarTextStyle" to "black", "navigationBarTitleText" to "uni-app x", "navigationBarBackgroundColor" to "#F8F8F8", "backgroundColor" to "#F8F8F8");
-    __uniConfig.tabBar = __uniTabBar as Map<String, Any>?;
+    __uniConfig.getTabBarConfig = fun(): Map<String, Any>? {
+        return null;
+    }
+    ;
+    __uniConfig.tabBar = __uniConfig.getTabBarConfig();
     __uniConfig.conditionUrl = "";
     __uniConfig.uniIdRouter = utsMapOf();
     __uniConfig.ready = true;
 }
-fun getApp(): GenApp {
-    return getBaseApp() as GenApp;
+open class GenUniApp : UniAppImpl() {
+    open val vm: GenApp?
+        get() {
+            return getAppVm() as GenApp?;
+        }
+    open val `$vm`: GenApp?
+        get() {
+            return getAppVm() as GenApp?;
+        }
+}
+fun getApp(): GenUniApp {
+    return getUniApp() as GenUniApp;
 }

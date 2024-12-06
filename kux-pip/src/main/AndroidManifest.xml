@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <application>
+        <activity android:name="io.dcloud.uniapp.UniAppActivity" android:supportsPictureInPicture="true"/>
+        <activity android:name="io.dcloud.uniapp.appframe.activity.UniPortraitPageActivity" android:supportsPictureInPicture="true"/>
+        <activity android:name="io.dcloud.uniapp.appframe.activity.UniPageActivity" android:supportsPictureInPicture="true"/>
+        <activity android:name="io.dcloud.PandoraEntryActivity" android:supportsPictureInPicture="true"/>
+        <activity android:name="io.dcloud.WebviewActivity" android:supportsPictureInPicture="true"/>
+        <activity android:name="io.dcloud.sdk.activity.WebViewActivity" android:supportsPictureInPicture="true"/>
+    </application>
+</manifest>

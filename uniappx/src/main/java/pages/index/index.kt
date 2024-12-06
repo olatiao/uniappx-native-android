@@ -1,5 +1,5 @@
-@file:Suppress("UNCHECKED_CAST", "USELESS_CAST", "INAPPLICABLE_JVM_NAME")
-package uni.UNI79D8002;
+@file:Suppress("UNCHECKED_CAST", "USELESS_CAST", "INAPPLICABLE_JVM_NAME", "UNUSED_ANONYMOUS_PARAMETER")
+package uni.UNI4CAF968;
 import io.dcloud.uniapp.*;
 import io.dcloud.uniapp.extapi.*;
 import io.dcloud.uniapp.framework.*;
@@ -14,42 +14,27 @@ import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Deferred;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.async;
-import uts.sdk.modules.kuxAudioPlayer.ApiFail;
-import uts.sdk.modules.kuxAudioPlayer.createAudioPlayer;
+import io.dcloud.uniapp.extapi.navigateTo as uni_navigateTo;
 open class GenPagesIndexIndex : BasePage {
-    constructor(instance: ComponentInternalInstance) : super(instance) {}
+    constructor(__ins: ComponentInternalInstance) : super(__ins) {}
     companion object {
         @Suppress("UNUSED_PARAMETER", "UNUSED_VARIABLE")
-        var setup: (__props: GenPagesIndexIndex) -> Any? = fun(
-        @Suppress("UNUSED_ANONYMOUS_PARAMETER")
-        __props): Any? {
+        var setup: (__props: GenPagesIndexIndex) -> Any? = fun(__props): Any? {
             val __ins = getCurrentInstance()!!;
             val _ctx = __ins.proxy as GenPagesIndexIndex;
             val _cache = __ins.renderCache;
-            val audioPlayer = createAudioPlayer();
-            audioPlayer.src = "https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3";
-            audioPlayer.onError(fun(error: ApiFail){
-                console.log(error, " at pages/index/index.uvue:16");
-            }
-            );
-            val onPlay = fun(){
-                audioPlayer.play();
+            val title = ref("Hello");
+            val goToPage2 = fun(){
+                uni_navigateTo(NavigateToOptions(url = "/pages/index2/index2"));
             }
             ;
-            val onPause = fun(){
-                audioPlayer.pause();
-            }
-            ;
-            val onStop = fun(){
-                audioPlayer.stop();
-            }
-            ;
-            console.log(444, " at pages/index/index.uvue:30");
             return fun(): Any? {
-                return createElementVNode("view", null, utsArrayOf(
-                    createElementVNode("button", utsMapOf("style" to normalizeStyle(utsMapOf("margin-bottom" to "30px")), "type" to "primary", "onClick" to onPlay), "开始播放", 4),
-                    createElementVNode("button", utsMapOf("style" to normalizeStyle(utsMapOf("margin-bottom" to "30px")), "type" to "primary", "onClick" to onPause), "暂停播放", 4),
-                    createElementVNode("button", utsMapOf("type" to "primary", "onClick" to onStop), "停止播放")
+                return createElementVNode("view", utsMapOf("class" to "content"), utsArrayOf(
+                    createElementVNode("image", utsMapOf("class" to "logo", "src" to "/static/logo.png")),
+                    createElementVNode("view", utsMapOf("class" to "text-area"), utsArrayOf(
+                        createElementVNode("text", utsMapOf("class" to "title"), toDisplayString(unref(title)), 1)
+                    )),
+                    createElementVNode("button", utsMapOf("onClick" to goToPage2), "打开页面2")
                 ));
             }
             ;
@@ -65,7 +50,7 @@ open class GenPagesIndexIndex : BasePage {
             }
         val styles0: Map<String, Map<String, Map<String, Any>>>
             get() {
-                return utsMapOf("logo" to padStyleMapOf(utsMapOf("height" to 100, "width" to 100, "marginTop" to 100, "marginRight" to "auto", "marginBottom" to 25, "marginLeft" to "auto")), "title" to padStyleMapOf(utsMapOf("fontSize" to 18, "color" to "#8f8f94", "textAlign" to "center")));
+                return utsMapOf("content" to padStyleMapOf(utsMapOf("display" to "flex", "alignItems" to "center", "justifyContent" to "center")), "logo" to padStyleMapOf(utsMapOf("height" to "200rpx", "width" to "200rpx", "marginTop" to "200rpx", "marginBottom" to "50rpx")), "title" to padStyleMapOf(utsMapOf("fontSize" to "36rpx", "color" to "#8f8f94")));
             }
         var inheritAttrs = true;
         var inject: Map<String, Map<String, Any?>> = utsMapOf();

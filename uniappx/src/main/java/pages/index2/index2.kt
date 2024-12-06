@@ -92,7 +92,7 @@ open class GenPagesIndex2Index2 : BasePage {
                     )),
                     createElementVNode("button", utsMapOf("onClick" to enterPictureInPictureMode), "开启画中画模式"),
                     createElementVNode("button", utsMapOf("onClick" to onCheckPermission), "检查权限是否被授予"),
-                    createElementVNode("button", utsMapOf("onClick" to onCheckSupportPIP), "检查是否支持画中画")
+                    createElementVNode("button", utsMapOf("onClick" to onCheckSupportPIP), "检查是否支持画中画.")
                 ), 4);
             }
             ;

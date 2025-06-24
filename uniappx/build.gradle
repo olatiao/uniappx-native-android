@@ -60,5 +60,4 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("com.squareup.okhttp3:okhttp:3.12.12")
     implementation("com.github.getActivity:XXPermissions:18.0")
-    implementation project(':kux-pip')
 }

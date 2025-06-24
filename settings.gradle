@@ -25,7 +25,6 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "kux-pip-app"
+rootProject.name = "shop-app-app"
 include ':app'
 include ':uniappx'
-include ':kux-pip'

@@ -1,0 +1,35 @@
+{
+    "id" : "__UNI__F95597E",
+    "name" : "shop-app",
+    "description" : "",
+    "version" : {
+        "name" : "1.0.0",
+        "code" : 2
+    },
+    "uni-app-x" : {
+        "compilerVersion" : "4.72"
+    },
+    "app-android" : {
+        "distribute" : {
+            "modules" : {
+                "uni-exit" : {},
+                "uni-prompt" : {}
+            },
+            "icons" : {
+                "hdpi" : "",
+                "xhdpi" : "",
+                "xxhdpi" : "",
+                "xxxhdpi" : ""
+            },
+            "splashScreens" : {
+                "default" : {}
+            },
+            "abiFilters" : [ "arm64-v8a" ],
+            "minSdkVersion" : "21",
+            "targetSdkVersion" : "32",
+            "schemes" : "rmbs",
+            "enableResourceOptimizations" : true,
+            "aaptOptions" : [ "noCompress 'png', 'jpg', 'jpeg'" ]
+        }
+    }
+}
